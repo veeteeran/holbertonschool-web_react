@@ -63,3 +63,10 @@ const executeWork = (employee: Director | Teacher) => {
     console.log(employee.workTeacherTasks());
   }
 }
+
+type Subjects = 'Math' | 'History';
+
+const teachClass = (todayClass: string): string => {
+  if (todayClass === 'Math') { return 'Teaching Math' }
+  else if (todayClass === 'History') { return 'Teaching History' }
+}
