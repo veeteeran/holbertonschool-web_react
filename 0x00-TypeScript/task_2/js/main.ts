@@ -30,7 +30,7 @@ export class Teacher implements TeacherInterface {
   }
 
   getCoffeeBreak() {
-    return 'Cannot get a coffee break';
+    return 'Cannot have a break';
   }
 
   workTeacherTasks() {
