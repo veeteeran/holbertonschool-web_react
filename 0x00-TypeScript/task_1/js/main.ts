@@ -11,18 +11,24 @@ interface Directors extends Teacher {
   numberOfReports: number;
 }
 
-const printTeacher = (firstName: string, lastName: string): string => `${firstName[0]}. ${lastName}`;
+const printTeacher: printTeacherFunction = (firstName: string, lastName: string): string => `${firstName[0]}. ${lastName}`;
 
 interface printTeacherFunction {
   (firstName: string, lastName: string): string;
 }
 
-interface Student {
+interface StudentInterface {
   firstName: string;
   lastName: string;
+  workOnHomework(): string;
+  displayName(): string;
 }
 
-class StudentClass implements Student {
+interface StudentConstructor {
+  new(firstName: string, lastName: string): StudentInterface;
+}
+
+class StudentClass implements StudentInterface {
   firstName: string;
   lastName: string;
 
