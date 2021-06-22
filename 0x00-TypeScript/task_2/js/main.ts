@@ -46,11 +46,11 @@ export const createEmployee = (salary: number | string): Director | Teacher => {
   return new Director;
 }
 
-export const isDirector = (employee: any): employee is Director => {
+export function isDirector(employee: any): employee is Director {
   return employee instanceof Director;
 }
 
-export const executeWork = (employee: Director | Teacher) => {
+export function executeWork(employee: Director | Teacher) {
   if (isDirector(employee)) {
     return employee.workDirectorTasks();
   } else {
@@ -60,7 +60,7 @@ export const executeWork = (employee: Director | Teacher) => {
 
 type Subjects = 'Math' | 'History';
 
-export const teachClass = (todayClass: string): string => {
+export function teachClass(todayClass: Subjects): string {
   if (todayClass === 'Math') { return 'Teaching Math' }
   else if (todayClass === 'History') { return 'Teaching History' }
 }
