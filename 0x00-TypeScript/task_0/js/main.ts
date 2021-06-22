@@ -18,9 +18,9 @@ const student_2: Student = {
   location: 'Sydney'
 }
 
-const arr = [student_1, student_2];
+const arr: Array<Student> = [student_1, student_2];
 
-const generateTableHead = (table: any, data: any) => {
+const generateTableHead = (table: HTMLTableElement, data: any) => {
   const thead = table.createTHead();
   const row = thead.insertRow();
   for (const key of data) {
@@ -33,7 +33,7 @@ const generateTableHead = (table: any, data: any) => {
   }
 }
 
-const generateTable = (table: any, data: any) => {
+const generateTable = (table: HTMLTableElement, data: any) => {
   for (const element of data) {
     const row = table.insertRow();
     for (const key in element) {
@@ -46,8 +46,7 @@ const generateTable = (table: any, data: any) => {
   }
 }
 
-// const table = document.querySelector("table");
-const table = document.createElement("table");
+const table: HTMLTableElement = document.createElement("table");
 document.body.appendChild(table);
 let data = Object.keys(arr[0]);
 generateTable(table, arr);
