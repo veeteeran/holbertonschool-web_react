@@ -21,12 +21,12 @@ const student_2: Student = {
 const arr: Array<Student> = [student_1, student_2];
 
 const generateTableHead = (table: HTMLTableElement, data: any) => {
-  const thead = table.createTHead();
-  const row = thead.insertRow();
+  const thead: HTMLTableSectionElement = table.createTHead();
+  const row: HTMLTableRowElement = thead.insertRow();
   for (const key of data) {
     if (key === 'firstName' || key === 'lastName' || key === 'location') {
-      const th = document.createElement("th");
-      const text = document.createTextNode(key);
+      const th: HTMLTableHeaderCellElement = document.createElement("th");
+      const text: Text = document.createTextNode(key);
       th.appendChild(text);
       row.appendChild(th);
     }
@@ -35,11 +35,11 @@ const generateTableHead = (table: HTMLTableElement, data: any) => {
 
 const generateTable = (table: HTMLTableElement, data: any) => {
   for (const element of data) {
-    const row = table.insertRow();
+    const row: HTMLTableRowElement = table.insertRow();
     for (const key in element) {
       if (key === 'firstName' || key === 'lastName' || key === 'location') {
-        const cell = row.insertCell();
-        const text = document.createTextNode(element[key]);
+        const cell: HTMLTableDataCellElement = row.insertCell();
+        const text: Text = document.createTextNode(element[key]);
         cell.appendChild(text);
       }
     }
@@ -48,6 +48,7 @@ const generateTable = (table: HTMLTableElement, data: any) => {
 
 const table: HTMLTableElement = document.createElement("table");
 document.body.appendChild(table);
-let data = Object.keys(arr[0]);
+
+let data: string[] = Object.keys(arr[0]);
 generateTable(table, arr);
 generateTableHead(table, data);
