@@ -45,4 +45,11 @@ module.exports = {
     port: 8564,
   },
   devtool: 'inline-source-map',
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: { test: /[\\/]node_modules[\\/]/, name: "common", chunks: "all" }
+      }
+    },
+  },
 };
