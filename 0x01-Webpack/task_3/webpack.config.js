@@ -37,16 +37,12 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.js$/,
-        enforce: "pre",
-        use: ["source-map-loader"],
-      },
     ],
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
+    contentBase: './public',
     compress: true,
     port: 8564,
   },
+  devtool: 'inline-source-map',
 };
