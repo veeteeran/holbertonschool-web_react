@@ -1,7 +1,5 @@
 import React from 'react';
 import Notifications from './Notifications';
-import closeIcon from './close-icon.png';
-import { getLatestNotification } from './utils';
 import { shallow } from 'enzyme';
 
 describe('rendering components', () => {
