@@ -1,6 +1,4 @@
 const path = require('path');
-const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const { extendDefaultPlugins } = require("svgo");
 
 module.exports = {
   entry: './js/dashboard_main.js',
@@ -17,39 +15,34 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        // type: 'asset/resource',
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+              },
+              // optipng.enabled: false will disable optipng
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.90],
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              // the webp option will enable WEBP
+              webp: {
+                quality: 75
+              }
+            }
+          },
+        ],
       },
     ],
   },
-  plugins: [
-    new ImageMinimizerPlugin({
-      minimizerOptions: {
-        // Lossless optimization with custom option
-        // Feel free to experiment with options for better result for you
-        plugins: [
-          ["gifsicle", { interlaced: true }],
-          ["jpegtran", { progressive: true }],
-          ["optipng", { optimizationLevel: 5 }],
-          // Svgo configuration here https://github.com/svg/svgo#configuration
-          [
-            "svgo",
-            {
-              plugins: extendDefaultPlugins([
-                {
-                  name: "removeViewBox",
-                  active: false,
-                },
-                {
-                  name: "addAttributesToSVGElement",
-                  params: {
-                    attributes: [{ xmlns: "http://www.w3.org/2000/svg" }],
-                  },
-                },
-              ]),
-            },
-          ],
-        ],
-      },
-    }),
-  ],
 };
