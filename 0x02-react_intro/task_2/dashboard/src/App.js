@@ -19,7 +19,7 @@ function App() {
         <button>OK</button>
       </body>
       <hr className="hr" />
-      <footer className="App-footer">{getFooterCopy(getFullYear())}</footer>
+      <footer className="App-footer">Copyright {getFullYear()} - {getFooterCopy(true)}</footer>
     </div>
   );
 }
