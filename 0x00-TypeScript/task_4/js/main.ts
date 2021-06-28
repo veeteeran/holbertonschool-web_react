@@ -17,16 +17,16 @@ export const cTeacher: Subjects.TeacherInterface = {
 }
 
 console.log('C++');
-cpp.setTeacher = cTeacher;
+cpp.teacher = cTeacher;
 console.log(cpp.getRequirements());
 console.log(cpp.getAvailableTeacher());
 
 console.log('Java');
-cpp.setTeacher = cTeacher;
+cpp.teacher = cTeacher;
 console.log(cpp.getRequirements());
 console.log(cpp.getAvailableTeacher());
 
 console.log('React');
-cpp.setTeacher = cTeacher;
+cpp.teacher = cTeacher;
 console.log(cpp.getRequirements());
 console.log(cpp.getAvailableTeacher());
