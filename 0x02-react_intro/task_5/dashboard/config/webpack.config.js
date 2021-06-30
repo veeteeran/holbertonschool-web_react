@@ -3,7 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './dashboard/src/index.js',
+  entry: './src/index.js',
   output: {
     filename: 'bundle.js',
   },
@@ -32,7 +32,15 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
     ],
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
   },
   devServer: {
     contentBase: './dist',
@@ -41,11 +49,11 @@ module.exports = {
     port: 8564,
   },
   devtool: 'inline-source-map',
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: { test: /[\\/]node_modules[\\/]/, name: "common", chunks: "all" }
-      }
-    },
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       commons: { test: /[\\/]node_modules[\\/]/, name: "common", chunks: "all" }
+  //     }
+  //   },
+  // },
 };
