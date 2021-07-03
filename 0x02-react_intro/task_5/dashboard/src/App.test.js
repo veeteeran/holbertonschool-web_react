@@ -1,12 +1,14 @@
 import React from 'react';
 import App from './App/App';
-import holberton_logo from './holberton_logo.jpeg';
+// import holberton_logo from './assets/holberton_logo.jpeg';
 import { getFullYear, getFooterCopy } from './utils/utils';
 import { shallow } from 'enzyme';
 
 describe('rendering components', () => {
   it('renders App component without crashing', () => {
-    shallow(<App />);
+    const wrapper = shallow(<App />);
+
+    expect(wrapper.exists()).toBe(true);
   });
 
   it('renders a div with the class App-header', () => {
@@ -15,12 +17,12 @@ describe('rendering components', () => {
         <div className="App-header" />
       </App>
     ));
-    expect(wrapper.contains(
-      <div className="App-header">
-        <img src={holberton_logo} className="App-logo" alt="logo" />
-        <h1 className="title">School dashboard</h1>
-      </div>
-    )).toBe(true);
+
+    expect(wrapper.exists()).toBe(true);
+    expect(wrapper.find('.App-header').children()).toHaveLength(2);
+    expect(wrapper.exists('img')).toBe(true);
+    expect(wrapper.exists('h1')).toBe(true);
+    expect(wrapper.find('h1').text()).toEqual('School dashboard');
   });
 
   it('renders a div with the class App-body', () => {
@@ -29,16 +31,26 @@ describe('rendering components', () => {
         <div className="App-body" />
       </App>
     ));
-    expect(wrapper.contains(
-      <div className="App-body">
-        <p>Login to access the full dashboard</p>
-        <label htmlFor="email">Email: </label>
-        <input type="email" id="email" name="email" />
-        <label htmlFor="password">Password: </label>
-        <input type="password" id="password" name="password" />
-        <button>OK</button>
-      </div>
-    )).toEqual(true);
+    expect(wrapper.exists()).toBe(true);
+    expect(wrapper.find('.App-body').children()).toHaveLength(6);
+
+    expect(wrapper.exists('p')).toBe(true);
+    expect(wrapper.find('p').first().text()).toEqual('Login to access the full dashboard');
+
+    expect(wrapper.find('label')).toHaveLength(2);
+    expect(wrapper.find('input')).toHaveLength(2);
+
+    expect(wrapper.find({ htmlFor: 'email' }).exists()).toBe(true);
+    expect(wrapper.find('label').first().text()).toEqual('Email: ');
+    expect(wrapper.find('#email').exists()).toBe(true);
+    expect(wrapper.find('input[type="email"]').exists()).toBe(true);
+    expect(wrapper.find({ name: 'email' }).exists()).toBe(true);
+
+    expect(wrapper.find({ htmlFor: 'password' }).exists()).toBe(true);
+    expect(wrapper.find('label').at(1).text()).toEqual('Password: ');
+    expect(wrapper.find('#password').exists()).toBe(true);
+    expect(wrapper.find({ type: 'password' }).exists()).toBe(true);
+    expect(wrapper.find({ name: 'password' }).exists()).toBe(true);
   });
 
   it('renders a div with the class App-footer', () => {
@@ -47,10 +59,8 @@ describe('rendering components', () => {
         <div className="App-footer" />
       </App>
     ));
-    expect(wrapper.contains(
-      <div className="App-footer">
-        Copyright {getFullYear()} - {getFooterCopy(true)}
-      </div>
-    )).toEqual(true);
+    expect(wrapper.exists()).toBe(true);
+    expect(wrapper.find('.App-footer').children()).toHaveLength(1);
+    expect(wrapper.find('p').at(1).text()).toEqual(`Copyright ${getFullYear()} - ${getFooterCopy(true)}`);
   });
 });
