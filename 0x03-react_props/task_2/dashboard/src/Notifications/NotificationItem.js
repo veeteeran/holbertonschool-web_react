@@ -1,11 +1,8 @@
 import React from 'react';
 import './Notifications.css';
-// import closeIcon from './close-icon.png';
-// import { getLatestNotification } from '../utils/utils';
 
 
-export default function NotificationItem(props) {
-  const { type, html, value } = props;
+export default function NotificationItem({ type, html, value }) {
   return (
     <>
       {type && value ?
@@ -19,5 +16,3 @@ export default function NotificationItem(props) {
     </>
   );
 }
-
-// export default Notifications;
