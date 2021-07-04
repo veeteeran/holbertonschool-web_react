@@ -35,7 +35,10 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    alias: {
+      'react-dom': 'react-dom/profiling',
+      'schedule/tracing': 'schedule/tracing-profiling',
+    }
   },
   devServer: {
     contentBase: './dist',
@@ -44,5 +47,9 @@ module.exports = {
     // port: 8564,
   },
   devtool: 'inline-source-map',
-  plugins: [new HtmlWebpackPlugin({ template: './dist/index.html' })],
+  plugins: [new HtmlWebpackPlugin({
+    name: "index.html",
+    inject: false,
+    template: './dist/index.html'
+  })],
 }
