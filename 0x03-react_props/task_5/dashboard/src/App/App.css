@@ -1,0 +1,44 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.title {
+  color: red;
+}
+
+.App-body {
+  min-height: 100vh;
+  text-align: left;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+.hr {
+  border-top: 2px solid red;
+}
+
+.App-footer {
+  margin-bottom: 2rem;
+  font-style: italic;
+} */
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hr {
+  border-top: 2px solid red;
+}
