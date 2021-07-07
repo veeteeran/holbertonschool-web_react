@@ -1,6 +1,5 @@
 import React from 'react';
 import App from './App/App';
-// import holberton_logo from './assets/holberton_logo.jpeg';
 import { getFullYear, getFooterCopy } from './utils/utils';
 import { shallow } from 'enzyme';
 
