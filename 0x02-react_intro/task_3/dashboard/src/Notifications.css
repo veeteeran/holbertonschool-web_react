@@ -1,0 +1,13 @@
+.Notifications {
+  border: dashed red;
+  padding: 2rem;
+}
+
+[data-default] {
+  color: blue;
+}
+
+[data-urgent] {
+  color: red;
+}
+
