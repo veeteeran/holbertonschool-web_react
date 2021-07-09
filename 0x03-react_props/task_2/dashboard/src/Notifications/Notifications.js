@@ -11,7 +11,7 @@ export default function Notifications() {
       <p>Here is the list of notifications</p>
       <ul>
         <NotificationItem
-          type='urgent'
+          type='default'
           value='New course available'
         />
         <NotificationItem
