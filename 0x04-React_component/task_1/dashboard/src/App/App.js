@@ -23,34 +23,20 @@ class App extends React.Component {
   ];
 
   componentDidMount() {
-    const keysPressed = {}
-
     document.addEventListener('keydown', (e) => {
-      keysPressed[e.key] = true;
-
-      if (keysPressed['Control'] && e.key == 'h') {
+      if (e.ctrlKey && e.key === 'h') {
         alert('Logging you out');
         this.props.logOut();
       }
-    });
-
-    document.addEventListener('keyup', (e) => {
-      keysPressed[e.key] = false;
     });
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', (e) => {
-      keysPressed[e.key] = true;
-
-      if (keysPressed['Control'] && e.key == 'h') {
+    document.removeEventListener('keydown', e => {
+      if (e.ctrlKey && e.key === 'h') {
         alert('Logging you out');
         this.props.logOut();
       }
-    });
-
-    document.removeEventListener('keyup', (e) => {
-      keysPressed[e.key] = false;
     });
   }
 
