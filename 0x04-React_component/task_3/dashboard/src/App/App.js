@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-import BodySection from '../BodySection/BodySection';
-import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import Notifications from '../Notifications/Notifications';
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
@@ -25,34 +23,20 @@ class App extends React.Component {
   ];
 
   componentDidMount() {
-    const keysPressed = {}
-
     document.addEventListener('keydown', (e) => {
-      keysPressed[e.key] = true;
-
-      if (keysPressed['Control'] && e.key == 'h') {
+      if (e.ctrlKey && e.key === 'h') {
         alert('Logging you out');
         this.props.logOut();
       }
-    });
-
-    document.addEventListener('keyup', (e) => {
-      keysPressed[e.key] = false;
     });
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', (e) => {
-      keysPressed[e.key] = true;
-
-      if (keysPressed['Control'] && e.key == 'h') {
+    document.removeEventListener('keydown', e => {
+      if (e.ctrlKey && e.key === 'h') {
         alert('Logging you out');
         this.props.logOut();
       }
-    });
-
-    document.removeEventListener('keyup', (e) => {
-      keysPressed[e.key] = false;
     });
   }
 
@@ -66,16 +50,9 @@ class App extends React.Component {
         <hr className="hr" />
         {
           this.props.isLoggedIn
-            ? <BodySectionWithMarginBottom>
-              <CourseList listCourses={this.listCourses} />
-            </BodySectionWithMarginBottom>
-            : <BodySectionWithMarginBottom>
-              <Login />
-            </BodySectionWithMarginBottom>
+            ? <CourseList listCourses={this.listCourses} />
+            : <Login />
         }
-        <BodySection title="News from the School">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-        </BodySection>
         <hr className="hr" />
         <Footer />
       </>

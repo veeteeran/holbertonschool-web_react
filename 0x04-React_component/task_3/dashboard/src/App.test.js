@@ -62,21 +62,36 @@ describe('when isLogged in is true', () => {
 
 describe('when Ctrl+h pressed', () => {
   it('checks logOut function is called', () => {
-    // const wrapper = mount(<App />).instance()
-    // const spy = jest.spyOn(instance, 'logOut');
-    // const spy = jest.spyOn(App.prototype, 'alert')
     const mockFn = jest.fn()
     const wrapper = mount(<App logOut={mockFn} />);
-    wrapper.simulate('keydown', { key: 'Control' })
-    // expect(mockFn).toHaveBeenCalled();
-    // wrapper.mockRestore();
+    const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'h' })
+
+    document.dispatchEvent(event);
+    expect(mockFn).toHaveBeenCalled();
+    wrapper.unmount();
   });
 
-  // it('checks alert function is called', () => {
+  window.alert = jest.fn();
+  it('checks alert function is called', () => {
+    const wrapper = mount(<App />);
+    const spy = jest.spyOn(window, 'alert');
+    const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'h' })
+    document.dispatchEvent(event);
 
-  // });
+    expect(spy).toHaveBeenCalled();
+    spy.mockRestore();
+    wrapper.unmount();
+  });
 
-  // it('checks alert string is "Logging you out"', () => {
+  it('checks alert string is "Logging you out"', () => {
+    const wrapper = mount(<App />);
+    const spy = jest.spyOn(window, 'alert');
+    const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'h' })
+    document.dispatchEvent(event);
 
-  // });
+    expect(spy).toHaveBeenCalledWith('Logging you out');
+    jest.restoreAllMocks()
+    wrapper.unmount();
+  });
+  window.alert.mockClear();
 });
