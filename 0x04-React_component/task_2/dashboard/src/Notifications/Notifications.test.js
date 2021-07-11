@@ -2,7 +2,7 @@ import React from 'react';
 import Notifications from './Notifications';
 import NotificationItem from './NotificationItem';
 import { getLatestNotification } from '../utils/utils';
-import { shallow } from 'enzyme';
+import { shallow, mount, unmount } from 'enzyme';
 
 describe('rendering components', () => {
   it('renders Notifications component without crashing', () => {
@@ -72,4 +72,16 @@ describe('rendering components', () => {
 
     expect(wrapper.find('ul').childAt(0).html()).toEqual('<li data-notification-type=\"default\">No new notification for now</li>');
   });
+
+  it('checks when markAsRead called, console.log called with `Notification ${id} has been marked as read`', () => {
+    const wrapper = shallow(<Notifications />);
+    const spy = jest.spyOn(console, 'log').mockImplementation();
+
+    wrapper.instance().markAsRead = spy;
+    wrapper.instance().markAsRead(1);
+    expect(wrapper.instance().markAsRead).toBeCalledWith(1);
+    expect(spy).toBeCalledTimes(1);
+    expect(spy).toBeCalledWith(1);
+    spy.mockRestore();
+  })
 });

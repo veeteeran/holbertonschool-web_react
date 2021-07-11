@@ -26,9 +26,9 @@ NotificationItem.propTypes = {
     html: PropTypes.string
   }),
   type: PropTypes.string,
-  value: PropTypes.string
-  // markAsRead: ,
-  // key: 
+  value: PropTypes.string,
+  markAsRead: PropTypes.func,
+  id: PropTypes.number
 }
 
 NotificationItem.defaultProps = {
