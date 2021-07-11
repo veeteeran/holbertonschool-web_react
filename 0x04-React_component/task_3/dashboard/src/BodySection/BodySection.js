@@ -15,4 +15,5 @@ export default class BodySection extends Component {
 
 BodySection.propTypes = {
   title: PropTypes.string,
+  children: PropTypes.arrayOf(PropTypes.node)
 }

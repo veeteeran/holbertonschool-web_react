@@ -22,4 +22,15 @@ describe('rendering components', () => {
     wrapper.setProps({ html: '<u>test</u>' })
     expect(wrapper.html()).toEqual('<li data-urgent=\"true\"><u>test</u></li>');
   })
+
+  it('checks component onClick spy is called with correct ID argument', () => {
+    const wrapper = shallow(<NotificationItem />);
+    const spy = jest.fn();
+
+    wrapper.setProps({ value: 'test', markAsRead: spy, id: 99 })
+    wrapper.find('li').props().onClick();
+    expect(spy).toBeCalledTimes(1);
+    expect(spy).toBeCalledWith(99);
+    spy.mockRestore();
+  })
 });
