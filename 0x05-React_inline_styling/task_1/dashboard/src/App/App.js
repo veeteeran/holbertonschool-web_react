@@ -100,6 +100,12 @@ const styles = StyleSheet.create({
   },
   hr: {
     borderTop: '2px solid red'
+  },
+  body: {
+
+  },
+  footer: {
+
   }
 })
 
