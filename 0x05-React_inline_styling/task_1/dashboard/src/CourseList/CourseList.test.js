@@ -31,9 +31,9 @@ describe('rendering CourseList component', () => {
     expect(wrapper.find('tbody').children()).toHaveLength(3);
   });
 
-  it('checks Notifications renders correctly if passed an empty array or listNotifications not passed', () => {
-    const wrapper = shallow(<CourseList listCourses={[]} />);
+  // it('checks Notifications renders correctly if passed an empty array or listNotifications not passed', () => {
+  //   const wrapper = shallow(<CourseList listCourses={[]} />);
 
-    expect(wrapper.find('tbody').childAt(0).text()).toEqual('No course available yet');
-  });
+  //   expect(wrapper.find('tbody').childAt(0).text()).toEqual('No course available yet');
+  // });
 })
