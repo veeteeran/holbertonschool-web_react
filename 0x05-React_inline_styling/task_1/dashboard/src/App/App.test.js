@@ -3,12 +3,12 @@
  */
 import React from 'react';
 import { StyleSheetTestUtils } from 'aphrodite';
-import App from './App/App';
-import Notifications from './Notifications/Notifications';
-import Login from './Login/Login';
-import Footer from './Footer/Footer';
-import Header from './Header/Header';
-import CourseList from './CourseList/CourseList';
+import App from './App';
+import Notifications from '../Notifications/Notifications';
+import Login from '../Login/Login';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import CourseList from '../CourseList/CourseList';
 import { shallow, mount } from 'enzyme';
 
 beforeEach(() => {
