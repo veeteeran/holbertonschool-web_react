@@ -52,35 +52,36 @@ describe('rendering components', () => {
     expect(wrapper.contains(<p>Here is the list of notifications</p>)).toBe(true);
   });
 
-  // it('check that the menu item is being displayed when displayDrawer is false', () => {
-  //   const wrapper = shallow(<Notifications />);
+  it('check that the menu item is being displayed when displayDrawer is false', () => {
+    const wrapper = shallow(<Notifications />);
+    const re = /menuItem.*/gm
 
-  //   expect(wrapper.find('menuItem_1ba569s').exists()).toEqual(true);
-  // });
+    expect(wrapper.childAt(0).hasClass(re)).toEqual(true);
+  });
 
-  // it('check that the div.Notifications is not being displayed when displayDrawer is false', () => {
-  //   const wrapper = shallow(<Notifications />);
+  it('check that the div.Notifications is not being displayed when displayDrawer is false', () => {
+    const wrapper = shallow(<Notifications />);
 
-  //   expect(wrapper.find('Notifications_pbqhv6').exists()).toEqual(false);
-  // });
+    expect(wrapper.find('.Notifications_pbqhv6').exists()).toEqual(false);
+  });
 
-  // it('check that the menu item is being displayed when displayDrawer is true', () => {
-  //   const wrapper = shallow(<Notifications displayDrawer={true} />);
+  it('check that the menu item is being displayed when displayDrawer is true', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} />);
 
-  //   expect(wrapper.find('.menuItem').exists()).toEqual(true);
-  // });
+    expect(wrapper.find('.menuItem_1ba569s').exists()).toEqual(true);
+  });
 
-  // it('check that the div.Notifications is being displayed when displayDrawer is true', () => {
-  //   const wrapper = shallow(<Notifications displayDrawer={true} />);
+  it('check that the div.Notifications is being displayed when displayDrawer is true', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} />);
 
-  //   expect(wrapper.find('.Notifications').exists()).toEqual(true);
-  // });
+    expect(wrapper.find('.Notifications_pbqhv6').exists()).toEqual(true);
+  });
 
-  // it('checks Notifications renders correctly if passed an empty array or listNotifications not passed', () => {
-  //   const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={[]} />);
+  it('checks Notifications renders correctly if passed an empty array or listNotifications not passed', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={[]} />);
 
-  //   expect(wrapper.find('ul').childAt(0).html()).toEqual('<li data-notification-type=\"default\">No new notification for now</li>');
-  // });
+    expect(wrapper.find('ul').childAt(0).html()).toEqual('<li data-notification-type=\"default\" class=\"\">No new notification for now</li>');
+  });
 
   it('checks when markAsRead called, console.log called with `Notification ${id} has been marked as read`', () => {
     const wrapper = shallow(<Notifications />);
