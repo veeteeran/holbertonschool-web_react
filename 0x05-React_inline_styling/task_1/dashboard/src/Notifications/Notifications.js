@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import './Notifications.css';
 import closeIcon from './close-icon.png';
 import NotificationItem from './NotificationItem';
 import NotificationItemShape from './NotificationItemShape';
@@ -50,11 +49,6 @@ class Notifications extends Component {
                         html={html}
                         markAsRead={this.markAsRead}
                         id={id}
-                        styles={
-                          html || type === 'urgent'
-                            ? styles.urgent
-                            : styles.default
-                        }
                       />
                     ))
                     : <NotificationItem value='No new notification for now' />
