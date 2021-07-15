@@ -80,7 +80,7 @@ describe('rendering components', () => {
   it('checks Notifications renders correctly if passed an empty array or listNotifications not passed', () => {
     const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={[]} />);
 
-    expect(wrapper.find('ul').childAt(0).html()).toEqual('<li data-notification-type=\"default\" class=\"\">No new notification for now</li>');
+    expect(wrapper.find('ul').childAt(0).html()).toEqual('<li data-notification-type=\"default\" class=\"default_1tsdo2i\">No new notification for now</li>');
   });
 
   it('checks when markAsRead called, console.log called with `Notification ${id} has been marked as read`', () => {

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 class NotificationItem extends PureComponent {
   render() {
-    const { type, value, html, markAsRead, id, styles } = this.props;
+    const { type, value, html, markAsRead, id } = this.props;
     return (
       <>
         {value

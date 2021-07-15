@@ -20,7 +20,7 @@ const CourseListRow = ({ isHeader = false, textFirstCell, textSecondCell = null,
               <th className={css(styles.cell)}>{textFirstCell}</th>
               <th className={css(styles.cell)}>{textSecondCell}</th>
             </>
-            : <th colSpan={2} className={css(styles.cell)}>{textFirstCell}</th>
+            : <th colSpan={2}>{textFirstCell}</th>
           : <>
             <td className={css(styles.cell)}>{textFirstCell}</td>
             <td className={css(styles.cell)}>{textSecondCell}</td>
