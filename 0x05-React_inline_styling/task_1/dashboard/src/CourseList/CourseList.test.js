@@ -28,27 +28,12 @@ describe('rendering CourseList component', () => {
     const wrapper = shallow(<CourseList listCourses={listCourses} />);
 
     expect(wrapper.find('thead').children()).toHaveLength(2);
-    // wrapper.find('thead').forEach(node => {
-    //   expect(node.equals(<CourseListRow
-    //     key={listCourses.id}
-    //     textFirstCell={listCourses.name}
-    //     textSecondCell={listCourses.credit}
-    //   />));
-    // });
-
     expect(wrapper.find('tbody').children()).toHaveLength(3);
-    // wrapper.find('tbody').forEach(node => {
-    //   expect(node.equals(<CourseListRow
-    //     key={listCourses.id}
-    //     textFirstCell={listCourses.name}
-    //     textSecondCell={listCourses.credit}
-    //   />));
-    // });
   });
 
   it('checks Notifications renders correctly if passed an empty array or listNotifications not passed', () => {
     const wrapper = shallow(<CourseList listCourses={[]} />);
 
-    expect(wrapper.find('tbody').childAt(0).html()).toEqual('<tr style=\"color:#f5f5f5ab\"><td>No course available yet</td><td></td></tr>');
+    expect(wrapper.find('tbody').childAt(0).text()).toEqual('No course available yet');
   });
 })
