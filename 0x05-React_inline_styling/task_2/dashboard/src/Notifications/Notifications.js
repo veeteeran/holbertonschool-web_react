@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import './Notifications.css';
+// import './Notifications.css';
 import closeIcon from './close-icon.png';
 import NotificationItem from './NotificationItem';
 import NotificationItemShape from './NotificationItemShape';
@@ -103,12 +103,6 @@ const styles = StyleSheet.create({
     border: 'dashed red',
     padding: '2rem',
     marginTop: '.3rem'
-  },
-  default: {
-    color: 'blue'
-  },
-  urgent: {
-    color: 'red'
   }
 })
 
