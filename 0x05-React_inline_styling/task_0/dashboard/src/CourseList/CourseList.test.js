@@ -41,6 +41,6 @@ describe('rendering CourseList component', () => {
   it('checks Notifications renders correctly if passed an empty array or listNotifications not passed', () => {
     const wrapper = shallow(<CourseList listCourses={[]} />);
 
-    expect(wrapper.find('tbody').childAt(0).html()).toEqual('<tr><td>No course available yet</td><td></td></tr>');
+    expect(wrapper.find('tbody').childAt(0).html()).toEqual('<tr style=\"color:#f5f5f5ab\"><td>No course available yet</td><td></td></tr>');
   });
 })
