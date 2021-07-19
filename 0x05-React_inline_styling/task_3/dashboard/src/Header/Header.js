@@ -16,7 +16,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     fontSize: 'calc(10px + 2vmin)',
-    color: 'white'
+    color: 'white',
+    '@media (max-width: 900px)': {
+      justifyContent: 'center'
+    }
   },
   title: {
     color: 'red'

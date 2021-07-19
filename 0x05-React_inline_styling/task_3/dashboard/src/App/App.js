@@ -46,7 +46,7 @@ class App extends React.Component {
       <>
         <div className={css(styles.container, styles.small)}>
           <Header />
-          <Notifications styles={styles.topRow} listNotifications={this.listNotifications} />
+          <Notifications listNotifications={this.listNotifications} />
         </div>
         <hr className={css(styles.hr)} />
         {
@@ -78,21 +78,6 @@ App.defaultProps = {
   logOut: () => { return }
 }
 
-// const containerStyle = Stylesheet.create({
-//   flex: {
-//     display: 'flex'
-//   },
-//   between: {
-//     justifyContent: 'space-between'
-//   }
-// });
-
-// const hrStyle = Stylesheet.create({
-//   red: {
-//     borderTop: '2px solid red'
-//   }
-// })
-
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
@@ -105,11 +90,6 @@ const styles = StyleSheet.create({
     '@media (max-width: 900px)': {
       display: 'grid',
       justifyContent: 'center',
-    }
-  },
-  topRow: {
-    '@media (max-width: 900px)': {
-      gridRow: '1'
     }
   }
 })

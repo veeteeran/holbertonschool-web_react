@@ -31,8 +31,12 @@ class Notifications extends Component {
   render() {
     const { displayDrawer, listNotifications } = this.props;
     return (
-      <div className={css(styles.notificationsContainer, this.props.styles)}>
-        <div className={css(styles.menuItem, styles.none)}>
+      <div className={
+        displayDrawer
+          ? css(styles.notificationsContainer, styles.drawerOpen)
+          : css(styles.notificationsContainer)}
+      >
+        <div className={css(styles.menuItem)}>
           Your notifications
         </div>
         {
@@ -89,7 +93,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     marginTop: '1rem',
-    marginRight: '1rem'
+    marginRight: '1rem',
+    gridRow: '1',
   },
   menuItem: {
     textAlign: 'right',
@@ -115,7 +120,8 @@ const styles = StyleSheet.create({
     top: "3.5rem",
     right: "2.2rem",
     '@media (max-width: 900px)': {
-      right: "17.2rem",
+      top: '10.5rem',
+      right: "14.2rem",
     }
   },
   center: {
@@ -124,6 +130,11 @@ const styles = StyleSheet.create({
       fontSize: '20px'
     }
   },
+  drawerOpen: {
+    '@media (max-width: 900px)': {
+      gridRow: '2'
+    }
+  }
 })
 
 export default Notifications;
