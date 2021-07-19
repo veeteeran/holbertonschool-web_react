@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import BodySection from '../BodySection/BodySection';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import Notifications from '../Notifications/Notifications';
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
@@ -50,9 +52,16 @@ class App extends React.Component {
         <hr className="hr" />
         {
           this.props.isLoggedIn
-            ? <CourseList listCourses={this.listCourses} />
-            : <Login />
+            ? <BodySectionWithMarginBottom>
+              <CourseList listCourses={this.listCourses} />
+            </BodySectionWithMarginBottom>
+            : <BodySectionWithMarginBottom>
+              <Login />
+            </BodySectionWithMarginBottom>
         }
+        <BodySection title="News from the School">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+        </BodySection>
         <hr className="hr" />
         <Footer />
       </>

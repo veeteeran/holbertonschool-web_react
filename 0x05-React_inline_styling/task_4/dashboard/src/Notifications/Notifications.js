@@ -36,7 +36,10 @@ class Notifications extends Component {
           ? css(styles.notificationsContainer, styles.drawerOpen)
           : css(styles.notificationsContainer)}
       >
-        <div className={css(styles.menuItem)}>
+        <div className={
+          displayDrawer
+            ? css(styles.none)
+            : css(styles.menuItem, styles.hover)}>
           Your notifications
         </div>
         {
@@ -88,6 +91,30 @@ Notifications.defaultProps = {
   displayDrawer: false,
 }
 
+const opacityKeyframes = {
+  'from': {
+    opacity: 0.5,
+  },
+  'to': {
+    opacity: 1
+  }
+}
+
+const bounceKeyframes = {
+  '0%': {
+    transform: 'translateY(0)'
+  },
+  '25%': {
+    transform: 'translateY(-5px)'
+  },
+  '75%': {
+    transform: 'translateY(5px)'
+  },
+  '100%': {
+    transform: 'translateY(0)'
+  },
+}
+
 const styles = StyleSheet.create({
   notificationsContainer: {
     display: 'flex',
@@ -98,7 +125,15 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     textAlign: 'right',
-    marginRight: '.5rem'
+    marginRight: '.5rem',
+  },
+  hover: {
+    ':hover': {
+      cursor: 'pointer',
+      animationName: [bounceKeyframes, opacityKeyframes],
+      animationDuration: '0.5s, 1s',
+      animationIterationCount: '3',
+    }
   },
   Notifications: {
     border: 'dashed red',
@@ -111,6 +146,7 @@ const styles = StyleSheet.create({
     }
   },
   none: {
+    display: 'none',
     '@media (max-width: 900px)': {
       display: 'none'
     }
