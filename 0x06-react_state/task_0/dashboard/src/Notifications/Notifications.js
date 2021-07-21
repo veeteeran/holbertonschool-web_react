@@ -27,6 +27,7 @@ class Notifications extends Component {
         displayDrawer
           ? css(styles.notificationsContainer, styles.drawerOpen)
           : css(styles.notificationsContainer)}
+        onClick={handleDisplayDrawer}
       >
         <div
           className={
