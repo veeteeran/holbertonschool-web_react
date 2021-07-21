@@ -64,6 +64,7 @@ class Notifications extends Component {
               </ul>
               <button
                 className={css(styles.button)}
+                style={{ float: "right" }}
                 aria-label="Close"
                 onClick={handleHideDrawer}
               >
