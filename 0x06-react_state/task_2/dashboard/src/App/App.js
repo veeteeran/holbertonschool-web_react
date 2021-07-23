@@ -9,13 +9,21 @@ import Header from '../Header/Header';
 import CourseList from '../CourseList/CourseList';
 import PropTypes from 'prop-types';
 import { getLatestNotification } from '../utils/utils';
+import { AppContext, logOut, defaultUser } from './AppContext';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { displayDrawer: false };
+    this.state = {
+      displayDrawer: false,
+      user: defaultUser,
+      logOut: () => {
+        this.setState({ user: defaultUser })
+      }
+    };
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
+    this.logIn = this.logIn.bind(this)
   }
 
   listCourses = [
@@ -34,7 +42,7 @@ class App extends React.Component {
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.key === 'h') {
         alert('Logging you out');
-        this.props.logOut();
+        this.state.logOut();
       }
     });
   }
@@ -43,7 +51,7 @@ class App extends React.Component {
     document.removeEventListener('keydown', e => {
       if (e.ctrlKey && e.key === 'h') {
         alert('Logging you out');
-        this.props.logOut();
+        this.state.logOut();
       }
     });
   }
@@ -56,9 +64,21 @@ class App extends React.Component {
     this.setState({ displayDrawer: false })
   }
 
+  logIn(email, password) {
+    this.setState({
+      user: {
+        email,
+        password,
+        isLoggedIn: true
+      }
+    })
+  }
+
   render() {
+    const { isLoggedIn } = this.state.user
+    const { user, logOut } = this.state
     return (
-      <>
+      <AppContext.Provider value={user, logOut}>
         <div className={css(styles.container, styles.small)}>
           <Header />
           <Notifications
@@ -70,12 +90,12 @@ class App extends React.Component {
         </div>
         <hr className={css(styles.hr)} />
         {
-          this.props.isLoggedIn
+          isLoggedIn
             ? <BodySectionWithMarginBottom>
               <CourseList listCourses={this.listCourses} />
             </BodySectionWithMarginBottom>
             : <BodySectionWithMarginBottom>
-              <Login />
+              <Login logIn={this.logIn} />
             </BodySectionWithMarginBottom>
         }
         <BodySection title="News from the School">
@@ -83,19 +103,19 @@ class App extends React.Component {
         </BodySection>
         <hr className={css(styles.hr)} />
         <Footer />
-      </>
+      </AppContext.Provider>
     );
   }
 }
 
 App.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  logOut: PropTypes.func,
+  // isLoggedIn: PropTypes.bool,
+  // logOut: PropTypes.func,
 }
 
 App.defaultProps = {
-  isLoggedIn: false,
-  logOut: () => { return }
+  // isLoggedIn: false,
+  // logOut: () => { return }
 }
 
 const styles = StyleSheet.create({
