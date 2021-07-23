@@ -83,14 +83,16 @@ Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func,
-  handleHideDrawer: PropTypes.func
+  handleHideDrawer: PropTypes.func,
+  markAsRead: PropTypes.func
 }
 
 Notifications.defaultProps = {
   displayDrawer: false,
   listNotifications: [],
   handleDisplayDrawer: () => { },
-  handleHideDrawer: () => { }
+  handleHideDrawer: () => { },
+  markAsRead: () => { }
 }
 
 const opacityKeyframes = {
