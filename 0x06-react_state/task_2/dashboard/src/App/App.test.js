@@ -41,7 +41,7 @@ describe('rendering components', () => {
   it('App contains Login component', () => {
     const wrapper = shallow(<App />);
 
-    expect(wrapper.contains(<Login />)).toBe(true);
+    expect(wrapper.find(Login)).toHaveLength(1);
   });
 
   it('App contains Footer component', () => {
@@ -58,27 +58,48 @@ describe('rendering components', () => {
 });
 
 describe('when isLogged in is true', () => {
-  const wrapper = shallow(<App isLoggedIn={true} />);
+  const wrapper = shallow(<App />);
 
   it('checks Login is not rendered', () => {
     expect(wrapper.contains(<Login />)).toBe(false);
   });
 
+  wrapper.setState({ user: { isLoggedIn: true } })
   it('checks CourseList is rendered', () => {
     expect(wrapper.find(CourseList)).toHaveLength(1);
   })
+
+  it("verifies that the logIn function updates the state correctly", () => {
+    const wrapper = shallow(<App />);
+    wrapper.setState({
+      user: {
+        email: 'foo',
+        password: 'bar',
+        isLoggedIn: true
+      }
+    });
+    expect(wrapper.state().user.email).toBe('foo');
+    expect(wrapper.state().user.password).toBe('bar');
+    expect(wrapper.state().user.isLoggedIn).toBe(true);
+  });
+
+  it("verifies that the logOut function updates the state correctly", () => {
+    const wrapper = shallow(<App />);
+    wrapper.setState({
+      user: {
+        email: 'foo',
+        password: 'bar',
+        isLoggedIn: true
+      }
+    });
+    wrapper.state().logOut();
+    expect(wrapper.state().user.email).toBe('');
+    expect(wrapper.state().user.password).toBe('');
+    expect(wrapper.state().user.isLoggedIn).toBe(false);
+  });
 });
 
 describe('when Ctrl+h pressed', () => {
-  it('checks logOut function is called', () => {
-    const mockFn = jest.fn()
-    const wrapper = mount(<App logOut={mockFn} />);
-    const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'h' })
-
-    document.dispatchEvent(event);
-    expect(mockFn).toHaveBeenCalled();
-    wrapper.unmount();
-  });
 
   window.alert = jest.fn();
   it('checks alert function is called', () => {

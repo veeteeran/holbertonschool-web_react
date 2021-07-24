@@ -9,7 +9,7 @@ import Header from '../Header/Header';
 import CourseList from '../CourseList/CourseList';
 import PropTypes from 'prop-types';
 import { getLatestNotification } from '../utils/utils';
-import { AppContext, logOut, defaultUser } from './AppContext';
+import { AppContext, defaultUser } from './AppContext';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,6 +24,7 @@ class App extends React.Component {
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.logIn = this.logIn.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   listCourses = [
@@ -39,21 +40,18 @@ class App extends React.Component {
   ];
 
   componentDidMount() {
-    document.addEventListener('keydown', (e) => {
-      if (e.ctrlKey && e.key === 'h') {
-        alert('Logging you out');
-        this.state.logOut();
-      }
-    });
+    document.addEventListener('keydown', this.handleKeyDown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', e => {
-      if (e.ctrlKey && e.key === 'h') {
-        alert('Logging you out');
-        this.state.logOut();
-      }
-    });
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown(e) {
+    if (e.ctrlKey && e.key === 'h') {
+      alert('Logging you out');
+      this.state.logOut();
+    }
   }
 
   handleDisplayDrawer() {
@@ -78,7 +76,7 @@ class App extends React.Component {
     const { isLoggedIn } = this.state.user
     const { user, logOut } = this.state
     return (
-      <AppContext.Provider value={user, logOut}>
+      <AppContext.Provider value={{ user, logOut }}>
         <div className={css(styles.container, styles.small)}>
           <Header />
           <Notifications
@@ -99,7 +97,7 @@ class App extends React.Component {
             </BodySectionWithMarginBottom>
         }
         <BodySection title="News from the School">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </BodySection>
         <hr className={css(styles.hr)} />
         <Footer />
