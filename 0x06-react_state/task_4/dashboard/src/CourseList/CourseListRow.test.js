@@ -30,7 +30,7 @@ describe('rendering CourseListRow', () => {
   it('checks when isHeader is false', () => {
     const wrapper = shallow(<CourseListRow isHeader={false} textFirstCell='Foo' textSecondCell='Bar' />);
     expect(wrapper.find('tr').children()).toHaveLength(2);
-    expect(wrapper.find('tr').childAt(0).html()).toEqual('<td class=\"cell_q0yd4b\">Foo</td>')
+    expect(wrapper.find('tr').childAt(0).html()).toEqual('<td class=\"cell_q0yd4b\"><input type=\"checkbox\"/>Foo</td>')
     expect(wrapper.find('tr').childAt(1).html()).toEqual('<td class=\"cell_q0yd4b\">Bar</td>')
   })
 })

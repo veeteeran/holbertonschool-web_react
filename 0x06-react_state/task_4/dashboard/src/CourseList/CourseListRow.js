@@ -7,7 +7,7 @@ const headerStyle = { color: '#deb5b545' };
 
 const CourseListRow = ({ isHeader = false, textFirstCell, textSecondCell = null }) => {
   const [isChecked, setIsChecked] = useState(false)
-  const handleClick = () => setIsChecked(!isChecked)
+  const handleChecked = () => setIsChecked(!isChecked)
 
   return (
     <tr style={
@@ -31,7 +31,7 @@ const CourseListRow = ({ isHeader = false, textFirstCell, textSecondCell = null 
                 : css(styles.cell)
             }
             >
-              <input type='checkbox' onClick={handleClick} checked={isChecked} />
+              <input type='checkbox' onChange={handleChecked} defaultChecked={isChecked} />
               {textFirstCell}
             </td>
             <td className={
