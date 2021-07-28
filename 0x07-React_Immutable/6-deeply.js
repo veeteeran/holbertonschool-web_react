@@ -1,4 +1,4 @@
-const { List, Map } = require('immutable');
+const { Map } = require('immutable');
 
 const mergeDeeplyElements = (page1, page2) => Map(page1).mergeDeep(Map(page2));
 
