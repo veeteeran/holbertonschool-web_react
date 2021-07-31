@@ -12,7 +12,6 @@ const notification = new schema.Entity('notifications', {
 
 const normalizeData = normalize(notifications, [notification])
 
-console.log(normalizeData)
 const getAllNotificationsByUser = userId => {
   return notifications
     .filter(notification => notification.author.id === userId)
