@@ -10,12 +10,10 @@ import {
 } from './uiActionCreator'
 import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-jest.mock("node-fetch", () => require("fetch-mock").sandbox());
-const fetchMock = require("node-fetch");
+import fetchMock from 'fetch-mock'
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)
-const store = mockStore({});
 
 describe('uiActionCreator', () => {
   it('should return type login with correct user object', () => {
@@ -58,29 +56,3 @@ describe('uiActionCreator', () => {
 //     fetchMock.reset()
 //   })
 // })
-
-describe("loginRequest", () => {
-  // it("should verify store received LOGIN and LOGIN_SUCCESS actions", () => {
-  //   fetchMock.get("/login-success.json", 200);
-  //   return store.dispatch(loginRequest('foo@bar.com', 'baz')).then(() => {
-  //     const actions = store.getActions();
-  //     expect(actions[0]).toEqual(login('foo@bar.com', 'baz'));
-  //     expect(actions[1]).toEqual(loginSuccess());
-  //   });
-  // });
-
-  it("should verify store received LOGIN and LOGIN_FAILURE actions", () => {
-    fetchMock.get(
-      "/login-success.json",
-      { throws: new Error("fetch failed") },
-      {
-        overwriteRoutes: true,
-      }
-    );
-    return store.dispatch(loginRequest('foo@bar.com', 'baz')).then(() => {
-      const actions = store.getActions();
-      expect(actions[2]).toEqual(login('foo@bar.com', 'baz'));
-      expect(actions[3]).toEqual(loginFailure());
-    });
-  });
-});
