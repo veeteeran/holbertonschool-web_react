@@ -1,4 +1,4 @@
-import uiReducer, { initialState } from './reducers'
+import uiReducer, { initialState } from './uiReducer'
 import { SELECT_COURSE } from '../actions/courseActionTypes'
 import { DISPLAY_NOTIFICATION_DRAWER } from '../actions/uiActionTypes'
 
