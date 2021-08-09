@@ -1,27 +1,6 @@
 import courseReducer from './courseReducer'
 import { fetchCourseSuccess, selectCourse, unSelectCourse } from '../actions/courseActionCreators'
 
-const selectedCourseList = [
-  {
-    id: 1,
-    name: "ES6",
-    isSelected: false,
-    credit: 60,
-  },
-  {
-    id: 2,
-    name: "Webpack",
-    isSelected: true,
-    credit: 20,
-  },
-  {
-    id: 3,
-    name: "React",
-    isSelected: false,
-    credit: 40,
-  },
-];
-
 describe('courseReducer', () => {
   it('Verifies default state returns an empty array', () => {
     const myState = courseReducer([], '')
