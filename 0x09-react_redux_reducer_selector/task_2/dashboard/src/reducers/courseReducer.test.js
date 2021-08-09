@@ -1,5 +1,5 @@
 import courseReducer from './courseReducer'
-import { fetchCourseSuccess, selectCourse, unSelectCourse } from '../actions/courseActionCreators';
+import { fetchCourseSuccess, selectCourse, unSelectCourse } from '../actions/courseActionCreators'
 
 const selectedCourseList = [
   {
@@ -95,8 +95,8 @@ describe('courseReducer', () => {
         credit: 40
       }
     ]
-    const myState = courseReducer(courseList, selectCourse(2))
-    expect(myState).toEqual(selectedCourseList)
+    const myState = courseReducer(initialState, selectCourse(2))
+    expect(myState).toEqual(returnState)
   })
 
   it("should returns the data with the right course property isSelected === false for UNSELECT_COURSE", () => {
