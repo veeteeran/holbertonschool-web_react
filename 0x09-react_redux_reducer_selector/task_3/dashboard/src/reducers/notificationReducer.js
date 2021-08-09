@@ -10,7 +10,7 @@ const initialState = {
   filter: 'DEFAULT'
 }
 
-export default notificationReducer = (state = initialState, action) => {
+export default function notificationReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_NOTIFICATIONS_SUCCESS: {
       return {
