@@ -14,7 +14,7 @@ export const initialState = {
 }
 
 export default function uiReducer(state = initialState, action) {
-  switch (action) {
+  switch (action.type) {
     case DISPLAY_NOTIFICATION_DRAWER: {
       return {
         ...state,
