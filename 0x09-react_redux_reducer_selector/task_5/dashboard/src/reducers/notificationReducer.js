@@ -27,13 +27,13 @@ export default function notificationReducer(state = initialState, action) {
       })
     }
     case MARK_AS_READ: {
-      return state.setIn(
+      return Map(state).setIn(
         ['notifications', 'entities', 'notifications', action.index.toString(), 'isRead'],
         true
       )
     }
     case SET_TYPE_FILTER: {
-      return state.set('filter', action.filter)
+      return Map(state).set('filter', action.filter)
     }
     default:
       return state

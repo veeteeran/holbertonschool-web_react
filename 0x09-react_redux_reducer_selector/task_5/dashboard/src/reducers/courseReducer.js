@@ -19,10 +19,10 @@ export default function courseReducer(state = initialState, action) {
         credit: item.credit,
       }))
       const normalizedData = courseNormalizer(data)
-      return state.merge(normalizedData)
+      return Map(state).merge(normalizedData)
     }
     case SELECT_COURSE: {
-      return state.setIn(
+      return Map(state).setIn(
         ['entities', 'courses', action.index.toString(), 'isSelected'],
         true
       )

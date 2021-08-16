@@ -1,11 +1,13 @@
 import courseReducer from './courseReducer'
 import { fetchCourseSuccess, selectCourse, unSelectCourse } from '../actions/courseActionCreators'
+import { fromJS, Map } from 'immutable'
+import coursesNormalizer from '../schema/courses'
 
 describe('courseReducer', () => {
   it('Verifies default state returns an empty array', () => {
     const myState = courseReducer([], '')
-    expect(myState).toEqual([]);
-  });
+    expect(myState).toEqual([])
+  })
 
   it("Verifies FETCH_COURSE_SUCCESS returns the data passed", () => {
     const returnState = [
@@ -30,7 +32,7 @@ describe('courseReducer', () => {
     ]
 
     const myState = courseReducer([], fetchCourseSuccess())
-    expect(myState).toEqual(returnState)
+    expect(myState.toJS()).toEqual(coursesNormalizer(returnState))
   })
 
   it("Verifies SELECT_COURSE returns the data with the right item updated", () => {
@@ -74,8 +76,8 @@ describe('courseReducer', () => {
         credit: 40
       }
     ]
-    const myState = courseReducer(initialState, selectCourse(2))
-    expect(myState).toEqual(returnState)
+    const myState = courseReducer(fromJS(coursesNormalizer(initialState)), selectCourse(2))
+    expect(myState.toJS()).toEqual(coursesNormalizer(returnState))
   })
 
   it("should returns the data with the right course property isSelected === false for UNSELECT_COURSE", () => {
@@ -119,7 +121,7 @@ describe('courseReducer', () => {
         credit: 40,
       },
     ]
-    const myState = courseReducer(initialState, unSelectCourse(2));
-    expect(myState).toEqual(returnState);
+    const myState = courseReducer(fromJS(coursesNormalizer(initialState)), unSelectCourse(2))
+    expect(myState.toJS()).toEqual(coursesNormalizer(returnState))
   });
 });
