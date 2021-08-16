@@ -14,8 +14,8 @@ const normalizeData = normalize(notifications, [notification])
 
 const getAllNotificationsByUser = userId => {
   const arr = []
-  const messages = normalizeData.entities.messages;
-  const notifications = normalizeData.entities.notifications;
+  const messages = normalizeData.entities.messages
+  const notifications = normalizeData.entities.notifications
 
   for (const id in notifications) {
     if (notifications[id].author === userId)
@@ -25,4 +25,6 @@ const getAllNotificationsByUser = userId => {
   return arr
 }
 
-export { getAllNotificationsByUser, normalizeData };
+const notificationsNormalizer = data => normalize(data, [notification])
+
+export { getAllNotificationsByUser, normalizeData, notificationsNormalizer }
