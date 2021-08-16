@@ -10,6 +10,7 @@ import courseNormalizer from '../schema/courses'
 const initialState = Map([])
 
 export default function courseReducer(state = initialState, action) {
+  state = Map(state)
   switch (action.type) {
     case FETCH_COURSE_SUCCESS: {
       const data = action.data.map((item) => ({

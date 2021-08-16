@@ -3,11 +3,12 @@ import {
   markAsAread,
   setNotificationFilter
 } from '../actions/notificationActionCreators'
+import { Map } from 'immutable'
 
 describe("notificationReducer", () => {
   it("Verifies default state returned", () => {
     const myState = notificationReducer(undefined, {})
-    expect(myState).toEqual({
+    expect(myState.toJS()).toEqual({
       notifications: [],
       filter: 'DEFAULT'
     })
@@ -48,7 +49,7 @@ describe("notificationReducer", () => {
         },
         {
           id: 2,
-          isRead: true,
+          isRead: false,
           type: "urgent",
           value: "New resume available",
         },
@@ -61,7 +62,7 @@ describe("notificationReducer", () => {
       ],
     }
     const myState = notificationReducer(initialState, markAsAread(2))
-    expect(myState).toEqual(returnState)
+    expect(myState.toJS()).toEqual(returnState)
   })
 
   it("Verifies SET_TYPE_FILTER returns the data passed", () => {
@@ -112,6 +113,6 @@ describe("notificationReducer", () => {
       ],
     }
     const myState = notificationReducer(initialState, setNotificationFilter('URGENT'))
-    expect(myState).toEqual(returnState)
+    expect(myState).toEqual(Map(returnState))
   });
 })
